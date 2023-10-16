@@ -2,10 +2,10 @@ import unittest
 
 import tensorflow as tf
 
-import src.layer.base as kate
+import KATE
 
 
-class DenseLayerTester(kate.BaseLayerTester):
+class DenseLayerTester(KATE.BaseLayerTester):
     layer_class = tf.keras.layers.Dense
     layer_args = {"units": 64, "activation": "relu"}
     input_shape = [None, 32]
