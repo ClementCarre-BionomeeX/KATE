@@ -1,8 +1,9 @@
 import os
 import sys
 import unittest
+
 import numpy as np
-from keras.layers import Dense
+import tensorflow as tf
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 import src.layer.base as kate
@@ -10,7 +11,7 @@ import src.layer.base as kate
 
 class TestKATE(unittest.TestCase):
     class DenseLayerTester(kate.BaseLayerTester):
-        layer_class = Dense
+        layer_class = tf.keras.layers.Dense
         layer_args = {"units": 64, "activation": "relu"}
         input_shape = [None, 32]
         expected_shape = [None, 64]
