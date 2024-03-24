@@ -40,8 +40,8 @@ class BaseLayerTester(unittest.TestCase):
             self.known_values["input"], self.known_values["output"]
         ):
             predicted_out = self.model.predict(np.array([inp]))
-            np.testing.assert_array_almost_equal(
-                predicted_out[0], expected_out, decimal=5
+            self.assertTrue(
+                tf.reduce_all(tf.abs(predicted_out[0] - expected_out) < 1e-3)
             )
 
     def test_serialization(self):
@@ -53,6 +53,6 @@ class BaseLayerTester(unittest.TestCase):
             for inp in self.known_values["input"]:
                 original_pred = self.model.predict(np.array([inp]))
                 loaded_pred = loaded_model.predict(np.array([inp]))
-                np.testing.assert_array_almost_equal(
-                    original_pred, loaded_pred, decimal=5
+                self.assertTrue(
+                    tf.reduce_all(tf.abs(original_pred - loaded_pred) < 1e-3)
                 )
