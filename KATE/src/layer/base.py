@@ -21,6 +21,9 @@ class BaseLayerTester(unittest.TestCase):
         self.model.add(self.layer)
         self.model.build(self.input_shape)
 
+    def test_summary(self):
+        self.model.summary()
+
     def test_shapes(self):
         output_shape = self.model.predict(
             np.random.randn(1, *self.input_shape[1:])
